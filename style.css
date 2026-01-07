@@ -31,21 +31,8 @@ button {
   background-color: white;
   border: 1px solid #ccc;
 }
-
 .bar {
   width: 20px;
   margin: 0 2px;
   background-color: steelblue;
-}
-
-.bar.compare {
-  background-color: orange;
-}
-
-.bar.swap {
-  background-color: red;
-}
-
-.bar.sorted {
-  background-color: green;
 }
