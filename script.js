@@ -63,3 +63,53 @@ const bubbleBtn = document.getElementById("bubble");
 bubbleBtn.addEventListener("click", () => {
   bubbleSort();
 });
+
+async function selectionSort() {
+  const bars = document.querySelectorAll(".bar");
+  const n = bars.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    let minIndex = i;
+
+    bars[minIndex].classList.add("compare");
+
+    for (let j = i + 1; j < n; j++) {
+      bars[j].classList.add("compare");
+      await sleep(200);
+
+      const heightJ = parseInt(bars[j].style.height);
+      const heightMin = parseInt(bars[minIndex].style.height);
+
+      if (heightJ < heightMin) {
+        bars[minIndex].classList.remove("compare");
+        minIndex = j;
+        bars[minIndex].classList.add("compare");
+      } else {
+        bars[j].classList.remove("compare");
+      }
+    }
+
+    if (minIndex !== i) {
+      bars[i].classList.add("swap");
+      bars[minIndex].classList.add("swap");
+
+      await sleep(300);
+
+      const tempHeight = bars[i].style.height;
+      bars[i].style.height = bars[minIndex].style.height;
+      bars[minIndex].style.height = tempHeight;
+
+      bars[minIndex].classList.remove("swap");
+    }
+
+    bars[i].classList.remove("compare", "swap");
+    bars[i].classList.add("sorted");
+  }
+
+  bars[n - 1].classList.add("sorted");
+}
+const selectionBtn = document.getElementById("selection");
+
+selectionBtn.addEventListener("click", () => {
+  selectionSort();
+});
