@@ -62,3 +62,16 @@ bubbleBtn.addEventListener("click", async () => {
 
 // Initial
 generateArray();
+
+import { selectionSort } from "./algorithms/selectionSort.js";
+const selectionBtn = document.getElementById("selection");
+function disableControls(disabled) {
+  generateBtn.disabled = disabled;
+  bubbleBtn.disabled = disabled;
+  selectionBtn.disabled = disabled;
+}
+selectionBtn.addEventListener("click", async () => {
+  disableControls(true);
+  await selectionSort(array, renderArray, sleep);
+  disableControls(false);
+});
