@@ -76,3 +76,14 @@ header p {
 .bar {
   width: 18px;
 }
+.bar.compare {
+  background: linear-gradient(180deg, #4facfe, #00f2fe);
+}
+
+.bar.swap {
+  background: linear-gradient(180deg, #ff416c, #ff4b2b);
+}
+
+.bar.sorted {
+  background: linear-gradient(180deg, #43e97b, #38f9d7);
+}
