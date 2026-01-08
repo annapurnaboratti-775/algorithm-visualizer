@@ -73,3 +73,6 @@ header p {
   background: linear-gradient(180deg, #ff7a18, #ffb347);
   border-radius: 6px 6px 0 0;
 }
+.bar {
+  width: 18px;
+}

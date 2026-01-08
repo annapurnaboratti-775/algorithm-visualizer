@@ -1,33 +1,44 @@
-// ===== DOM ELEMENTS =====
-const arrayContainer = document.querySelector(".array-container");
+const visualizer = document.querySelector(".visualizer");
 const generateBtn = document.getElementById("generate");
 
-// ===== GLOBAL ARRAY =====
 let array = [];
+const ARRAY_SIZE = 25;
+const MIN_VALUE = 10;
+const MAX_VALUE = 300;
 
-// ===== UTILITY =====
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+// Utility: generate random integer
+function randomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// ===== ARRAY GENERATOR =====
-function generateArray(size = 30) {
-  console.log("Generate clicked"); // DEBUG LINE
+// Clear existing bars
+function clearVisualizer() {
+  visualizer.innerHTML = "";
+}
 
-  arrayContainer.innerHTML = "";
-  array = [];
+// Create bars from array
+function renderArray(arr) {
+  clearVisualizer();
 
-  for (let i = 0; i < size; i++) {
-    const value = Math.floor(Math.random() * 100) + 10;
-    array.push(value);
-
+  arr.forEach((value) => {
     const bar = document.createElement("div");
     bar.classList.add("bar");
-    bar.style.height = `${value * 2}px`;
-
-    arrayContainer.appendChild(bar);
-  }
+    bar.style.height = `${value}px`;
+    visualizer.appendChild(bar);
+  });
 }
 
-// ===== EVENT LISTENER =====
+// Generate new array
+function generateArray() {
+  array = [];
+  for (let i = 0; i < ARRAY_SIZE; i++) {
+    array.push(randomInt(MIN_VALUE, MAX_VALUE));
+  }
+  renderArray(array);
+}
+
+// Event listener
 generateBtn.addEventListener("click", generateArray);
+
+// Initial load
+generateArray();
