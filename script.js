@@ -75,3 +75,17 @@ selectionBtn.addEventListener("click", async () => {
   await selectionSort(array, renderArray, sleep);
   disableControls(false);
 });
+
+import { insertionSort } from "./algorithms/insertionSort.js";
+const insertionBtn = document.getElementById("insertion");
+function disableControls(disabled) {
+  generateBtn.disabled = disabled;
+  bubbleBtn.disabled = disabled;
+  selectionBtn.disabled = disabled;
+  insertionBtn.disabled = disabled;
+}
+insertionBtn.addEventListener("click", async () => {
+  disableControls(true);
+  await insertionSort(array, renderArray, sleep);
+  disableControls(false);
+});
