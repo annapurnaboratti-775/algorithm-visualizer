@@ -1,16 +1,22 @@
 import { bubbleSort } from "./algorithms/bubbleSort.js";
+import { selectionSort } from "./algorithms/selectionSort.js";
+import { insertionSort } from "./algorithms/insertionSort.js";
 
+// DOM elements
 const visualizer = document.querySelector(".visualizer");
 const generateBtn = document.getElementById("generate");
 const bubbleBtn = document.getElementById("bubble");
+const selectionBtn = document.getElementById("selection");
+const insertionBtn = document.getElementById("insertion");
 
+// Data
 let array = [];
 const ARRAY_SIZE = 25;
 const MIN_VALUE = 10;
 const MAX_VALUE = 300;
 const SPEED = 80;
 
-// Utility
+// Utilities
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -28,15 +34,19 @@ function renderArray(arr, i = null, j = null, state = "", sortedIndex = -1) {
     bar.classList.add("bar");
     bar.style.height = `${value}px`;
 
-    if (index === i || index === j) bar.classList.add(state);
-    if (index >= sortedIndex && sortedIndex !== -1)
+    if (index === i || index === j) {
+      bar.classList.add(state);
+    }
+
+    if (sortedIndex !== -1 && index >= sortedIndex) {
       bar.classList.add("sorted");
+    }
 
     visualizer.appendChild(bar);
   });
 }
 
-// Generate
+// Generate array
 function generateArray() {
   array = [];
   for (let i = 0; i < ARRAY_SIZE; i++) {
@@ -45,13 +55,15 @@ function generateArray() {
   renderArray(array);
 }
 
-// Control locking
+// Disable / enable buttons (ONLY ONCE)
 function disableControls(disabled) {
   generateBtn.disabled = disabled;
   bubbleBtn.disabled = disabled;
+  selectionBtn.disabled = disabled;
+  insertionBtn.disabled = disabled;
 }
 
-// Events
+// Event listeners
 generateBtn.addEventListener("click", generateArray);
 
 bubbleBtn.addEventListener("click", async () => {
@@ -60,32 +72,17 @@ bubbleBtn.addEventListener("click", async () => {
   disableControls(false);
 });
 
-// Initial
-generateArray();
-
-import { selectionSort } from "./algorithms/selectionSort.js";
-const selectionBtn = document.getElementById("selection");
-function disableControls(disabled) {
-  generateBtn.disabled = disabled;
-  bubbleBtn.disabled = disabled;
-  selectionBtn.disabled = disabled;
-}
 selectionBtn.addEventListener("click", async () => {
   disableControls(true);
   await selectionSort(array, renderArray, sleep);
   disableControls(false);
 });
 
-import { insertionSort } from "./algorithms/insertionSort.js";
-const insertionBtn = document.getElementById("insertion");
-function disableControls(disabled) {
-  generateBtn.disabled = disabled;
-  bubbleBtn.disabled = disabled;
-  selectionBtn.disabled = disabled;
-  insertionBtn.disabled = disabled;
-}
 insertionBtn.addEventListener("click", async () => {
   disableControls(true);
   await insertionSort(array, renderArray, sleep);
   disableControls(false);
 });
+
+// Initial render
+generateArray();
