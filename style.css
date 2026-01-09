@@ -14,6 +14,7 @@ body {
   align-items: center;
 }
 
+/* ---------------- Header ---------------- */
 header {
   text-align: center;
   margin-top: 30px;
@@ -29,12 +30,14 @@ header p {
   margin-top: 6px;
 }
 
+/* ---------------- Controls ---------------- */
 .controls {
   margin: 30px 0;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .controls button {
@@ -54,6 +57,22 @@ header p {
   transform: translateY(-2px);
 }
 
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Speed slider */
+.controls label {
+  font-weight: 500;
+}
+
+.controls input[type="range"] {
+  width: 200px;
+  cursor: pointer;
+}
+
+/* ---------------- Visualizer ---------------- */
 .visualizer {
   width: 90%;
   max-width: 900px;
@@ -67,40 +86,25 @@ header p {
   padding: 20px;
 }
 
-.bar {
-  width: 30px;
-  height: 120px;
-  background: linear-gradient(180deg, #ff7a18, #ffb347);
-  border-radius: 6px 6px 0 0;
-}
+/* ---------------- Bars ---------------- */
 .bar {
   width: 18px;
+  background: linear-gradient(180deg, #ff7a18, #ffb347);
+  border-radius: 6px 6px 0 0;
+  transition: height 0.2s ease, background-color 0.2s ease;
 }
-.bar.compare {
+
+/* Comparing elements */
+.bar.comparing {
   background: linear-gradient(180deg, #4facfe, #00f2fe);
 }
 
-.bar.swap {
+/* Swapping / current minimum */
+.bar.swapping {
   background: linear-gradient(180deg, #ff416c, #ff4b2b);
 }
 
+/* Sorted elements */
 .bar.sorted {
   background: linear-gradient(180deg, #43e97b, #38f9d7);
-}
-
-.controls {
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.controls label {
-  color: #ffffff;
-  font-weight: 500;
-}
-
-.controls input[type="range"] {
-  width: 200px;
-  cursor: pointer;
 }
