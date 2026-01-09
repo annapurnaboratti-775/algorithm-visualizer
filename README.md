@@ -71,13 +71,22 @@ This project focuses on **understanding algorithms visually**, not just implemen
 
 ##  Project Structure
 algorithm-visualizer/
+
 │
+
 ├── index.html
+
 ├── style.css
+
 ├── script.js
+
 ├── algorithms/
+
 │   ├── bubbleSort.js
+
 │   ├── selectionSort.js
+
 │   └── insertionSort.js
+
 └── README.md
 
