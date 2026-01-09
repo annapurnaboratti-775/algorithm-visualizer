@@ -76,7 +76,8 @@ algorithm-visualizer/
 ├── style.css
 ├── script.js
 ├── algorithms/
-│ ├── bubbleSort.js
-│ ├── selectionSort.js
-│ └── insertionSort.js
+│   ├── bubbleSort.js
+│   ├── selectionSort.js
+│   └── insertionSort.js
 └── README.md
+
