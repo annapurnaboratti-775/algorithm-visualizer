@@ -1,26 +1,36 @@
-export async function selectionSort(array, render, delay) {
-  const n = array.length;
+export async function selectionSort(arr, renderArray, sleep) {
+  const n = arr.length;
 
   for (let i = 0; i < n; i++) {
     let minIndex = i;
 
-    for (let j = i + 1; j < n; j++) {
-      render(array, minIndex, j, "compare", i);
-      await delay();
+    // Highlight current position
+    renderArray(arr, i, minIndex, "comparing", i);
+    await sleep();
 
-      if (array[j] < array[minIndex]) {
+    for (let j = i + 1; j < n; j++) {
+      // Show scanning comparison
+      renderArray(arr, j, minIndex, "comparing", i);
+      await sleep();
+
+      if (arr[j] < arr[minIndex]) {
         minIndex = j;
-        render(array, minIndex, j, "swap", i);
-        await delay();
+
+        // New minimum found
+        renderArray(arr, j, minIndex, "swapping", i);
+        await sleep();
       }
     }
 
+    // Swap only ONCE per pass
     if (minIndex !== i) {
-      [array[i], array[minIndex]] = [array[minIndex], array[i]];
-      render(array, i, minIndex, "swap", i + 1);
-      await delay();
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+
+      renderArray(arr, i, minIndex, "swapping", i);
+      await sleep();
     }
   }
 
-  render(array, null, null, "sorted");
+  // Final render (fully sorted)
+  renderArray(arr, null, null, "", 0);
 }
