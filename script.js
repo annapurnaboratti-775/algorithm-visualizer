@@ -14,16 +14,23 @@ let array = [];
 const ARRAY_SIZE = 25;
 const MIN_VALUE = 10;
 const MAX_VALUE = 300;
-const SPEED = 80;
+let speed = 80;
+const speedSlider = document.getElementById("speed");
+
 
 // Utilities
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function sleep(ms = SPEED) {
+function sleep(ms = speed) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+speedSlider.addEventListener("input", (e) => {
+  speed = Number(e.target.value);
+});
+
 
 // Rendering
 function renderArray(arr, i = null, j = null, state = "", sortedIndex = -1) {

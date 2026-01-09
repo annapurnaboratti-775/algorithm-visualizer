@@ -87,3 +87,20 @@ header p {
 .bar.sorted {
   background: linear-gradient(180deg, #43e97b, #38f9d7);
 }
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls label {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.controls input[type="range"] {
+  width: 200px;
+  cursor: pointer;
+}
